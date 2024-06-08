@@ -14,4 +14,6 @@ public interface JobService {
     public boolean updateJob(Long id, Job value);
 
     public boolean deleteJob(Long id);
+
+    public List<Job> getJobsByCompanycompanyId(Long CompanyId);
 }

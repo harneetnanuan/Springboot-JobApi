@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface CompanyService {
     public List<Company> getAllCompanies();
     public void addACompany( Company company);
+    public Boolean updateACompany(Company company);
     public Optional<Company> getCompanyWithID(Long companyId);
-    //public List<Job> getAllJobsInACompany(Long id);
+    public Boolean deleteCompanyById(Long companyId);
 }

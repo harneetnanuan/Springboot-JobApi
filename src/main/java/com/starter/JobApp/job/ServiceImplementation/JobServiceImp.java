@@ -3,12 +3,11 @@ package com.starter.JobApp.job.ServiceImplementation;
 import com.starter.JobApp.job.Job;
 import com.starter.JobApp.job.JobRepository;
 import com.starter.JobApp.job.JobService;
+import org.hibernate.annotations.Cascade;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class JobServiceImp implements JobService {
@@ -75,5 +74,10 @@ public class JobServiceImp implements JobService {
                     return true;
                 }
                 return false;
+    }
+
+    @Override
+    public List<Job> getJobsByCompanycompanyId(Long companyId) {
+        return jobRepository.findBycompany_companyID(companyId);
     }
 }

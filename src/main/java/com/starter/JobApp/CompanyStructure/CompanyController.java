@@ -32,7 +32,15 @@ public class CompanyController {
         return new ResponseEntity<>("added",HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @PutMapping
+    public ResponseEntity<String> updateCompany(@RequestBody Company company){
+        if(companyServiceImp.updateACompany(company))
+        {
+            return  new ResponseEntity<>("Updated Successfully",HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Company Not found",HttpStatus.NOT_FOUND);
+    }
+    @GetMapping("/{companyId}")
     public ResponseEntity<Optional<Company>> getCompanyById(@PathVariable Long companyId)
     {
         Optional<Company> companyOptional =companyServiceImp.getCompanyWithID(companyId);
@@ -45,9 +53,16 @@ public class CompanyController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<List<Job>> getAllJobsInACompany(@PathVariable Long companyId){
-        return new ResponseEntity<>(companyServiceImp.getAllJobsInACompany(companyId),HttpStatus.OK);
+    @DeleteMapping("/{companyId}")
+    public ResponseEntity<String> deleteCompanyById(@PathVariable Long companyId)
+    {
+        if (companyServiceImp.deleteCompanyById(companyId))
+        {
+            return new ResponseEntity<>("company is removed from the portal",HttpStatus.OK);
+        }
+        return  new ResponseEntity<>("company does not exist/check company paramters again",HttpStatus.NOT_FOUND);
     }
+
 
 
 }
